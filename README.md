@@ -44,7 +44,7 @@ Las reglas se editan en `src/`. El archivo de `build/` se genera automáticament
 El orden de compilación se define en `sourceFiles`, dentro de `scripts/theme.config.js`.
 Los módulos nuevos deben registrarse en esa lista.
 
-### Prueba local en BetterDiscord
+### Pruebas
 
 `npm run dev` reconstruye el módulo y genera una copia completa del tema en el
 destino indicado por `.theme-dev/dev.json`.
@@ -64,7 +64,7 @@ edita.
 Sin un destino configurado, la vista previa se guarda en `.theme-dev/preview/test.theme.css`.
 `npm run dev -- --once` genera una sola vez, sin mantener el watcher abierto.
 
-## Clases de Discord
+## Clases
 
 Comprobar los selectores de `src/` contra Stable o Canary:
 
@@ -109,7 +109,7 @@ npm run check-classes -- --canary
 
 Los addons y el archivo de configuración se revisan por separado.
 
-## GitHub Pages
+## Pages
 
 El CSS publicado se carga desde:
 
