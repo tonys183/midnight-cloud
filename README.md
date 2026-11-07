@@ -36,13 +36,33 @@ Requiere Node.js 18 o posterior. Los comandos se ejecutan desde la raíz del rep
 
 ```powershell
 npm run build          # generar build/midnight-cloud.css
-npm run dev            # reconstruir al guardar cambios
+npm run dev            # actualizar el tema test al guardar cambios
 npm run check:build    # comprobar que el build coincide con las fuentes
 ```
 
 Las reglas se editan en `src/`. El archivo de `build/` se genera automáticamente.
 El orden de compilación se define en `sourceFiles`, dentro de `scripts/theme.config.js`.
 Los módulos nuevos deben registrarse en esa lista.
+
+### Prueba local en BetterDiscord
+
+`npm run dev` reconstruye el módulo y genera una copia completa del tema en el
+destino indicado por `.theme-dev/dev.json`.
+La copia incluye los estilos de `src/`, las opciones de `midnight-cloud.theme.css`,
+los addons activos y los recursos locales.
+
+El destino también se puede indicar al ejecutar el comando:
+
+```powershell
+npm run dev -- --output "$env:APPDATA\BetterDiscord\themes\test.theme.css"
+```
+
+En BetterDiscord se activa **test** y se desactiva el tema publicado para evitar
+que sus estilos se superpongan. El proceso debe permanecer abierto mientras se
+edita.
+
+Sin un destino configurado, la vista previa se guarda en `.theme-dev/preview/test.theme.css`.
+`npm run dev -- --once` genera una sola vez, sin mantener el watcher abierto.
 
 ## Clases de Discord
 
