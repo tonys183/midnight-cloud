@@ -7,7 +7,7 @@ body {
 @property --custom-chatbar {
     syntax: 'off | separated';
     inherits: false;
-    initial-value: off;
+    initial-value: aligned;
 }
 
 .attachWrapper_7TM4SO {
@@ -35,7 +35,7 @@ body {
     }
     .messagesWrapper_8AE1Qq {
         background-color: var(--background-base-lower);
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius-none);
         border: var(--border-thickness) solid var(--border-subtle);
         backdrop-filter: var(--panel-backdrop-filter);
         transition: border-color var(--border-hover-transition);
@@ -51,7 +51,7 @@ body {
     .scroller_8AE1Qq::-webkit-scrollbar-track {
         margin-bottom: calc(26px);
     }
-    .chatContent_z_gUBg:has(> .form_z_gUBg > .typing_U9Tvvz) .messagesWrapper_8AE1Qq::before {
+    .chatContent_z_gUBg:has(.typing_U9Tvvz) .messagesWrapper_8AE1Qq::before {
         content: '';
         position: absolute;
         bottom: 0;
@@ -81,10 +81,10 @@ body {
     .channelBottomBarArea_z_gUBg {
         margin-top: var(--gap);
     }
-    #app-mount .channelTextArea_z_gUBg {
+    .channelTextArea_z_gUBg {
         margin: 0;
         background-color: var(--background-base-lower);
-        border-radius: var(--radius-lg);
+        border-radius: var(--radius-none);
         border: var(--border-thickness) solid var(--border-subtle);
         backdrop-filter: var(--panel-backdrop-filter);
         transition: border-color var(--border-hover-transition);
@@ -102,7 +102,6 @@ body {
         padding: 0;
         border-radius: var(--radius-lg);
         border: var(--border-thickness) solid var(--border-subtle);
-        background-color: var(--bg-4);
         backdrop-filter: var(--panel-backdrop-filter);
         transition: border-color var(--border-hover-transition);
 
@@ -110,13 +109,5 @@ body {
             border-color: var(--border-hover);
         }
     }
-    /* "This channel is not in your channel list" header */
-    .chatHeaderBar_rsucr8 {
-        margin: 0px;
-        margin-bottom: var(--gap);
-        padding-left: 28px;
-        border-width: var(--border-thickness);
-        border-radius: var(--radius-lg);
-        background-color: var(--bg-4);
-    }
 }
+

@@ -1,40 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const chokidar = require('chokidar');
-
-const { baseFile, buildCombinedTheme, root, srcDir } = require('./build');
-
-require('dotenv').config({ path: path.join(root, '.env') });
-
-const outputPaths = (process.env.DEV_OUTPUT_PATH || '')
-    .split(',')
-    .map((outputPath) => outputPath.trim())
-    .filter(Boolean);
-
-if (outputPaths.length === 0) {
-    console.error('DEV_OUTPUT_PATH is not set in .env file');
-    process.exit(1);
+const fs = require('node:fs');
+const path = require('node:path');
+const { spawnSync } = require('node:child_process');
+const root = path.resolve(__dirname, '..');
+let timer;
+function build() {
+    const result = spawnSync(process.execPath, [path.join(__dirname, 'build.js')], { stdio: 'inherit' });
+    if (result.error) console.error(result.error.message);
 }
-
-function processFiles() {
-    try {
-        const theme = buildCombinedTheme();
-        for (const outputPath of outputPaths) {
-            fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-            fs.writeFileSync(outputPath, theme);
-            console.log(`Updated ${outputPath}`);
-        }
-    } catch (error) {
-        console.error('Error processing files:', error);
-    }
+build();
+for (const folder of ['src', 'scripts']) {
+    fs.watch(path.join(root, folder), () => {
+        clearTimeout(timer);
+        timer = setTimeout(build, 150);
+    });
 }
-
-processFiles();
-
-const watcher = chokidar.watch([baseFile, `${srcDir}/**/*.css`], { ignoreInitial: true });
-watcher
-    .on('all', (event, file) => {
-        console.log(`${event}: ${path.relative(root, file)}`);
-        processFiles();
-    })
-    .on('error', (error) => console.error(`Watcher error: ${error}`));
+console.log('Observando src/ y scripts/. Ctrl+C para salir.');

@@ -1,48 +1,54 @@
-const fs = require('fs');
-const path = require('path');
-
+// Based on refact0r/midnight-discord build tooling (MIT; see LICENSES/).
+const fs = require('node:fs');
+const path = require('node:path');
 const config = require('./theme.config');
-
-const root = path.join(__dirname, '..');
+const root = path.resolve(__dirname, '..');
+const srcDir = path.join(root, 'src');
 const baseFile = path.join(root, config.baseFile);
 const buildFile = path.join(root, config.buildFile);
-const srcDir = path.join(root, 'src');
 
-function validateSourceFiles() {
-    const discovered = fs.readdirSync(srcDir)
-        .filter((file) => file.endsWith('.css'))
-        .sort((a, b) => a.localeCompare(b));
-    const configured = [...config.sourceFiles].sort((a, b) => a.localeCompare(b));
-    if (JSON.stringify(discovered) !== JSON.stringify(configured)) {
-        throw new Error(
-            `CSS source list mismatch.\nConfigured: ${configured.join(', ')}\nDiscovered: ${discovered.join(', ')}`,
-        );
+function compileSource() {
+    const discovered = fs.readdirSync(srcDir).filter(f => f.endsWith('.css')).sort();
+    const configured = [...config.sourceFiles].sort();
+    if (new Set(configured).size !== configured.length ||
+        JSON.stringify(discovered) !== JSON.stringify(configured)) {
+        throw new Error('Actualiza sourceFiles en scripts/theme.config.js: ' + discovered.join(', '));
     }
+    // Preserve source bytes and order, including the original CRLF section headers.
+    return Buffer.concat(config.sourceFiles.flatMap(file => [
+        Buffer.from(`/* ${file} */\r\n`), fs.readFileSync(path.join(srcDir, file)),
+    ]));
 }
 
 function buildSource() {
-    validateSourceFiles();
-    const combined = config.sourceFiles
-        .map((file) => `/* ${file} */\n${fs.readFileSync(path.join(srcDir, file), 'utf8')}\n`)
-        .join('');
+    const compiled = compileSource();
     fs.mkdirSync(path.dirname(buildFile), { recursive: true });
-    fs.writeFileSync(buildFile, combined);
-    return combined;
+    fs.writeFileSync(buildFile, compiled);
+    return compiled.toString('utf8');
 }
 
 function buildCombinedTheme() {
-    const compiled = buildSource();
     const base = fs.readFileSync(baseFile, 'utf8');
-    const matches = base.split(config.buildImport).length - 1;
-    if (matches !== 1) {
-        throw new Error(`Expected exactly one build import in ${baseFile}; found ${matches}`);
+    if (base.split(config.buildImport).length !== 2) {
+        throw new Error('Debe existir exactamente un import del build en ' + config.baseFile);
     }
-    return base.replace(config.buildImport, compiled);
+    return base.replace(config.buildImport, () => compileSource().toString('utf8'));
 }
 
 if (require.main === module) {
-    const compiled = buildSource();
-    console.log(`Built ${path.relative(root, buildFile)} (${compiled.length} bytes)`);
+    try {
+        if (process.argv.includes('--check')) {
+            if (!fs.existsSync(buildFile) || !fs.readFileSync(buildFile).equals(compileSource())) {
+                throw new Error('Build desactualizado. Ejecuta npm run build.');
+            }
+            console.log('Build actualizado: ' + config.buildFile);
+        } else {
+            buildSource();
+            console.log('Generado: ' + config.buildFile);
+        }
+    } catch (error) {
+        console.error(error.message);
+        process.exitCode = 1;
+    }
 }
-
-module.exports = { baseFile, buildCombinedTheme, buildFile, buildSource, config, root, srcDir };
+module.exports = { config, root, srcDir, baseFile, buildFile, buildSource, buildCombinedTheme };

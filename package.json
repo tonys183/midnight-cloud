@@ -1,17 +1,25 @@
 {
-	"name": "systemtheme",
-	"version": "1.0.0",
-	"scripts": {
-		"build": "node scripts/build.js",
-		"dev": "node scripts/dev.js",
-		"serve": "node scripts/serve.js",
-		"screenshot": "node scripts/screenshot-flavors.js",
-		"check-classes": "node scripts/check-classes.js"
-	},
-	"author": "refact0r",
-	"license": "MIT",
-	"devDependencies": {
-		"chokidar": "^3.6.0",
-		"dotenv": "^16.4.5"
-	}
+  "name": "midnight-cloud",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Tema midnight cloud personalizado de tonys183, basado en Midnight de refact0r",
+  "author": "tonys183",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/dev.js",
+    "check:build": "node scripts/build.js --check",
+    "check-classes": "node scripts/check-classes.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tonys183/midnight-cloud.git"
+  },
+  "homepage": "https://tonys183.github.io/midnight-cloud/",
+  "bugs": {
+    "url": "https://github.com/tonys183/midnight-cloud/issues"
+  }
 }

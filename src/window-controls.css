@@ -1,10 +1,5 @@
 body {
     --window-control-size: 14px;
-    --window-controls-padding: calc(var(--gap) - (var(--window-control-size) / 2) + 1px);
-}
-
-.winButtons_3zSH5d {
-    padding-right: var(--window-controls-padding);
 }
 
 @property --custom-window-controls {
@@ -16,6 +11,10 @@ body {
 @container body style(--custom-window-controls: on) {
     .winButtons_3zSH5d {
         gap: 0;
+        padding-right: calc(var(--gap) - (var(--window-control-size) / 2) + 1px);
+    }
+    .winButtons_3zSH5d::before {
+        margin-right: calc(var(--custom-app-top-bar-height) / 4);
     }
     .winButton_3zSH5d > svg {
         display: none;
@@ -39,13 +38,28 @@ body {
         transform: scale(0.9);
     }
     .winButtonClose_3zSH5d::after {
-        background-color: var(--dnd) !important;
+        transition: background-color 0.15s ease-out;
+        background-color: #313131 !important;
     }
     .winButtonMinMax_3zSH5d:nth-child(1)::after {
-        background-color: var(--idle) !important;
+        transition: background-color 0.15s ease-out;
+        background-color: #313131 !important;
     }
     .winButtonMinMax_3zSH5d:nth-child(2)::after {
-        background-color: var(--online) !important;
+        transition: background-color 0.15s ease-out;
+        background-color: #313131 !important;
+    }
+    .winButtonClose_3zSH5d:hover::after {
+        transition: background-color 0.30s ease-out;
+        background-color: var(--close-color-hover) !important;
+    }
+    .winButtonMinMax_3zSH5d:nth-child(1):hover::after {
+        transition: background-color 0.30s ease-out;
+        background-color: var(--min-color-hover) !important;
+    }
+    .winButtonMinMax_3zSH5d:nth-child(2):hover::after {
+        transition: background-color 0.30s ease-out;
+        background-color: var(--max-color-hover) !important;
     }
 }
 
@@ -57,4 +71,60 @@ body {
     .winButtons_3zSH5d {
         gap: 0;
     }
+}
+
+/* background color settings module (left-side) and screenshare */
+.container_NdjzJd, .container_dvN-MP{
+    background-color: rgb(0, 0, 0);
+}
+/* background of screenshare footer */
+.footer_oszuaw{
+    background-color: transparent;
+}
+
+/* remove checkpoint icon */
+.bar_3zSH5d [aria-label="Checkpoint"] {
+    display: none;
+}
+
+/* remove scroll */
+::-webkit-scrollbar-thumb {
+    border: none !important;
+    background-clip: content-box !important;
+    background: transparent !important;
+}
+.scroller_EDKX0U{
+    background-color: transparent;
+}
+
+/* remove nameplate left corner */
+.fitInAccount_AFi54G{
+    background: transparent !important;
+}
+.accountPopoutButtonWrapper_g6VwXp{
+    min-width: 80px !important;
+}
+.buttons_g6VwXp{
+    gap: 4px !important;
+}
+.buttons_g6VwXp, .accountPopoutButtonWrapper_g6VwXp.plated_g6VwXp{
+    --custom-nameplate: var(--control-secondary-background-hover) !important;
+}
+.container_g6VwXp .button_Y-8oZW.redGlow_Y-8oZW{
+    background-color: color-mix(in hsl, var(--accent-new), transparent 90%) !important;
+}
+
+/* background of divider */
+.content_4TfzT5{
+    background-color: var(--grey-2);
+}
+
+/* background of activity panels*/
+.refresh-active-now .header_o3hXTo{
+    background-color: transparent !important;
+}
+
+/* remove back and forward buttons */
+.backForwardButtons_nS9Yqn{
+    display: none;
 }
