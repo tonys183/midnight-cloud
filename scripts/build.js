@@ -1,4 +1,4 @@
-// Based on refact0r/midnight-discord build tooling (MIT; see LICENSES/).
+// Based on refact0r/midnight-discord build tooling (MIT; see LICENSE).
 const fs = require('node:fs');
 const path = require('node:path');
 const config = require('./theme.config');

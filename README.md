@@ -1,5 +1,15 @@
 # midnight-cloud
 
+<p align="center">
+  <img alt="CSS" src="https://img.shields.io/badge/CSS-663399?style=plastic&amp;logo=css&amp;logoColor=white">
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=plastic&amp;logo=javascript&amp;logoColor=black">
+  <img alt="Node.js 18 o posterior" src="https://img.shields.io/badge/Node.js-%3E%3D18-339933?style=plastic&amp;logo=nodedotjs&amp;logoColor=white">
+  <img alt="Python 3" src="https://img.shields.io/badge/Python-3-3776AB?style=plastic&amp;logo=python&amp;logoColor=white">
+  <img alt="BetterDiscord" src="https://img.shields.io/badge/BetterDiscord-3E82E5?style=plastic&amp;logo=betterdiscord&amp;logoColor=white">
+  <a href="https://tonys183.github.io/midnight-cloud/"><img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub_Pages-222222?style=plastic&amp;logo=github&amp;logoColor=white"></a>
+  <a href="LICENSE"><img alt="Licencia MIT" src="https://img.shields.io/badge/Licencia-MIT-blue?style=plastic"></a>
+</p>
+
 Tema para BetterDiscord de **tonys183**, basado en [Midnight de refact0r](https://github.com/refact0r/midnight-discord).
 
 ## Estructura
@@ -12,7 +22,7 @@ midnight-cloud.theme.css      # metadatos, configuración e imports
 addons/                      # complementos opcionales
 assets/                      # recursos gráficos
 tools/update-classes.py       # migración de clases de Discord
-LICENSES/                    # licencias de componentes de terceros
+LICENSE                      # licencia MIT
 ```
 
 ## Configuración
@@ -90,4 +100,4 @@ https://tonys183.github.io/midnight-cloud/build/midnight-cloud.css
 ## Créditos
 
 - Personalizaciones: tonys183.
-- Tema Midnight y herramienta de revisión de clases: refact0r. Licencia MIT en `LICENSES/midnight-discord-MIT.txt`.
+- Tema Midnight y herramienta de revisión de clases: refact0r (Licencia MIT).

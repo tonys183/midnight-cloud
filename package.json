@@ -4,7 +4,7 @@
   "private": true,
   "description": "Tema midnight cloud personalizado de tonys183, basado en Midnight de refact0r",
   "author": "tonys183",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "node scripts/dev.js",
