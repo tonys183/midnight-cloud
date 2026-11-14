@@ -7,7 +7,7 @@ body:
     attributes:
       label: Qué sucede
       description: Descripción del problema y del lugar donde aparece.
-      placeholder: La lupa del buscador aparece de color lima al abrir los ajustes.
+      placeholder: Describir el comportamiento observado, dónde ocurre y cuándo aparece.
     validations:
       required: true
 
@@ -35,7 +35,7 @@ body:
     id: expected
     attributes:
       label: Resultado esperado
-      placeholder: El icono debería usar el mismo color que los demás iconos del campo.
+      placeholder: Describir el aspecto o comportamiento esperado.
     validations:
       required: true
 
@@ -81,18 +81,15 @@ body:
     attributes:
       label: Clase del elemento afectado
       description: Desde el inspector de Discord, seleccionar el elemento y copiar su atributo class completo, incluido el hash. Campo opcional si no se puede identificar.
-      placeholder: icon_0PLWhS
+      placeholder: Clases copiadas del atributo class del elemento.
 
   - type: textarea
     id: inspected-css
     attributes:
       label: CSS o variables del inspector
-      description: Incluir la propiedad que produce el problema, su valor calculado y, si corresponde, la variable utilizada por el SVG o su path.
+      description: Información relevante del inspector, como reglas CSS, propiedades, variables o valores calculados relacionados con el problema. Campo opcional.
       placeholder: |
-        /* path del SVG */
-        fill: var(--input-icon-default);
-        /* valor de la variable */
-        --input-icon-default: lime;
+        /* Reglas CSS o valores relevantes del inspector. */
       render: css
 
   - type: upload
