@@ -1031,7 +1031,7 @@ body {
         --input-border-hover: var(--border);
         --input-border-readonly: red;
         --input-foreground-placeholder: yellow;
-        --input-icon-default: lime;
+        --input-icon-default: var(--text-4);
         --input-placeholder-text-default: var(--text-5);
         --input-text-default: var(--text-3);
         --input-text-error-default: var(--text-3);
